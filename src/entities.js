@@ -204,7 +204,7 @@ export class LivingEntity extends Entity {
       this.setPosition(this.moveTowardsX, this.moveTowardsY);
       this.setMoveTowards(null, null);
       return;
-    };
+    }
 
     if (Math.abs(dy) < dtSpeed) this.yOffset = Math.abs(0.5 - Math.abs(dx)) - 0.5;
     else if (Math.abs(dx) < dtSpeed) this.yOffset = Math.abs(0.5 - Math.abs(dy)) - 0.5;
@@ -389,7 +389,7 @@ class HumanGatheringAI extends AI {
             this.entity.noAvaliableTrees = true;
             this.entity.setAI(new HumanIdleAI(this.entity));
             break;
-          };
+          }
 
           if (this.getPathfindRoute(this.targetTree.pixelX(), this.targetTree.pixelY() + 1).length === 0)
             this.unreachableTrees.push(this.targetTree);
