@@ -46,6 +46,10 @@ export class Camera {
     return [(x + this.x) / this.world.imageRatio + this.world.worldSize / 2, (y + this.y) / this.world.imageRatio + this.world.worldSize / 2];
   }
 
+  coordinatesToScreen(x, y) {
+    return [(x - this.world.worldSize / 2 - 0.5) * this.world.imageRatio, (y - this.world.worldSize / 2 - 0.5) * this.world.imageRatio];
+  }
+
   _lerp(a, b, v) {
     return a + (b - a) * v;
   }

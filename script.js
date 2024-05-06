@@ -6,13 +6,17 @@ Math.randRange = (start, stop) => {
   if (start > stop) [start, stop] = [stop, start];
   return start + Math.random() * (stop - start);
 };
+Math.randColor = () => {
+  return [Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)];
+}
 Math.distance = (x1, y1, x2, y2) => Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 Math.clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
-import { World } from './src/world.js';
-import { Camera } from './src/camera.js';
+import {World, CHUNK_NUMBER, CHUNK_SIZE} from './src/world.js';
+import {Camera} from './src/camera.js';
 import * as assets from './src/assets.js';
-import { EntityHuman } from './src/entities.js';
+import {EntityHuman} from './src/entities.js';
+import {generateKingdomName, generateMotto} from "./src/nomenclature.js";
 
 let width, height, minWidthHeight;
 
@@ -34,12 +38,12 @@ new p5(/** @param {p5} p5 */(p5) => {
     width = window.innerWidth;
     height = window.innerHeight;
     minWidthHeight = Math.min(width, height);
-    world = new World(p5);
+    world = new World(p5, CHUNK_NUMBER, CHUNK_SIZE);
     camera = new Camera(p5, world, -width / 2, -height / 2);
     world.camera = camera;
 
     p5.createCanvas(width, height);
-    p5.rectMode(p5.CENTER);
+//    p5.rectMode(p5.CENTER);
     p5.imageMode(p5.CENTER);
     p5.noStroke();
     p5.noSmooth();
@@ -87,9 +91,9 @@ new p5(/** @param {p5} p5 */(p5) => {
     if (px >= 0 && px < world.worldSize && py >= 0 && py < world.worldSize) {
       if (event.button === 0) {
         world.spawnEntity(new EntityHuman(world, px, py));
-      }
-      else if (event.button === 2) {
-        world.entities.filter(entity => entity.ai).forEach(entity => entity.ai.setTarget(px, py));
+      } else if (event.button === 2) {
+//        world.entities.filter(entity => entity.ai).forEach(entity => entity.ai.setTarget(px, py));
+        console.log(`${generateKingdomName()}: "${generateMotto()}"`);
       }
     }
   }

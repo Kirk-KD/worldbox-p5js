@@ -140,7 +140,7 @@ export var astar = {
 /**
  * A graph memory structure
  * @param {Array} gridIn 2D array of input weights
- * @param {Object} [options]
+ * @param {{diagonal: boolean}} [options]
  * @param {bool} [options.diagonal] Specifies whether diagonal moves are allowed
  */
 export function Graph(gridIn, options) {
